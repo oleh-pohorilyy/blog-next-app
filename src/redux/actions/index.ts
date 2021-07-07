@@ -1,0 +1,1 @@
+export { postsActions } from './posts'

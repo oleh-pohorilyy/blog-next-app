@@ -16,7 +16,8 @@
     "jsx": "preserve",
     "paths": {
       "model": ["./src/model"],
-      "api/*": ["./src/api/*"]
+      "api/*": ["./src/api/*"],
+      "redux/*": ["./src/redux/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

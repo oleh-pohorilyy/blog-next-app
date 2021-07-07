@@ -1,14 +1,9 @@
-import Head from 'next/head'
+import { MainLayout } from 'src/layouts'
 
 export default function LatestPosts() {
   return (
-    <>
-      <Head>
-        <title>Next.JS Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <MainLayout>
       <main></main>
-    </>
+    </MainLayout>
   )
 }
