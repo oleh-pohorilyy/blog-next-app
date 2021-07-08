@@ -1,15 +1,31 @@
 import type { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
 import { wrapper } from 'redux/store'
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyles = createGlobalStyle`
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #131313;
+  color: #ffffff;
+}
+
+#__next {
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+`
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Next.JS Blog</title>
+        <title>Next Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <GlobalStyles />
       <Component {...pageProps} />
     </>
   )

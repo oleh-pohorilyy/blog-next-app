@@ -1,3 +1,11 @@
+import { Header } from 'common'
+import styled from 'styled-components'
+
+const Main = styled.main`
+  flex-grow: 1;
+  overflow: hidden;
+`
+
 interface MainLayoutProps {
   children: React.ReactNode
 }
@@ -5,8 +13,8 @@ interface MainLayoutProps {
 export function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <header>Blog</header>
-      <main>{children}</main>
+      <Header>Next Blog</Header>
+      <Main>{children}</Main>
     </>
   )
 }

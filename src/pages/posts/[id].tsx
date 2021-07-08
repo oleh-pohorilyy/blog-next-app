@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { Button, Container, Preloader } from 'common'
 import { IAppState, IPost } from 'model'
 import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -30,13 +31,20 @@ const Post: NextPage<PostProps> = ({ postId }) => {
     }
   }, [])
 
-  if (post == null) return <>Loading...</>
   return (
     <MainLayout>
-      <div>{post.id}</div>
-      <div>{post.title}</div>
-      <div>{post.body}</div>
-      <button onClick={() => router.push('/')}>Back</button>
+      <Container>
+        {post == null ? (
+          <Preloader />
+        ) : (
+          <>
+            <div>{post.id}</div>
+            <div>{post.title}</div>
+            <div>{post.body}</div>
+            <Button onClick={() => router.push('/')}>Back</Button>
+          </>
+        )}
+      </Container>
     </MainLayout>
   )
 }

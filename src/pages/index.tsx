@@ -1,6 +1,14 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import {
+  Post,
+  ScrollContainer,
+  Container,
+  FloatingButton,
+  UnstyledLink,
+  Preloader,
+} from 'common'
 import { IAppState, IPost } from 'model'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
@@ -25,20 +33,31 @@ const LatestPosts: NextPage = () => {
     }
   }, [])
 
-  if (posts.length == 0) return <>Loading...</>
   return (
     <MainLayout>
-      <Link href="/posts/new">
-        <button>Create post</button>
-      </Link>
-      {posts.map((e) => (
-        <Link href="/posts/[id]" as={`/posts/${e.id}`} key={e.id}>
-          <div style={{ marginBottom: '20px', background: '#999999' }}>
-            <div>{e.title}</div>
-            <div>{e.body}</div>
-          </div>
+      <Container height="100%">
+        <ScrollContainer>
+          {posts.length == 0 ? (
+            <Preloader />
+          ) : (
+            <>
+              {posts.map((post) => (
+                <Link href="/posts/[id]" as={`/posts/${post.id}`} key={post.id}>
+                  <UnstyledLink>
+                    <Post title={post.title} body={post.body} />
+                  </UnstyledLink>
+                </Link>
+              ))}
+            </>
+          )}
+        </ScrollContainer>
+
+        <Link href="/posts/new">
+          <a>
+            <FloatingButton char={'+'} />
+          </a>
         </Link>
-      ))}
+      </Container>
     </MainLayout>
   )
 }
