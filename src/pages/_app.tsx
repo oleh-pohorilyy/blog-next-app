@@ -4,8 +4,13 @@ import { wrapper } from 'redux/store'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-body {
+*, *::after, *::before{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #131313;
   color: #ffffff;
@@ -13,6 +18,7 @@ body {
 
 #__next {
   max-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }

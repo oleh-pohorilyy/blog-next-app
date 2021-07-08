@@ -22,20 +22,27 @@ const PostCard = styled.article`
 const PostTitle = styled.article`
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 8px;
 `
 
-const PostBody = styled.article``
+const PostBody = styled.article`
+  padding-left: 8px;
+`
 
 interface PostProps {
   title: string
   body: string
+  cutLength?: number
 }
 
-const Post: React.FC<PostProps> = ({ title, body }) => {
+const Post: React.FC<PostProps> = ({ title, body, cutLength }) => {
   return (
     <PostCard>
       <PostTitle>{title}</PostTitle>
-      <PostBody>{body}</PostBody>
+      <PostBody>
+        {body.substring(0, cutLength)}
+        {cutLength ? '...' : ''}
+      </PostBody>
     </PostCard>
   )
 }

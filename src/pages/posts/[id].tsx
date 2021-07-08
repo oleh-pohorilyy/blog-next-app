@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Button, Container, Preloader } from 'common'
+import { Button, Container, Preloader, Post as StyledPost } from 'common'
 import { IAppState, IPost } from 'model'
 import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/dist/client/router'
@@ -38,9 +38,7 @@ const Post: NextPage<PostProps> = ({ postId }) => {
           <Preloader />
         ) : (
           <>
-            <div>{post.id}</div>
-            <div>{post.title}</div>
-            <div>{post.body}</div>
+            <StyledPost title={post.title} body={post.body} />
             <Button onClick={() => router.push('/')}>Back</Button>
           </>
         )}

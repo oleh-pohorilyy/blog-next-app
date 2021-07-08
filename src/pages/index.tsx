@@ -44,7 +44,7 @@ const LatestPosts: NextPage = () => {
               {posts.map((post) => (
                 <Link href="/posts/[id]" as={`/posts/${post.id}`} key={post.id}>
                   <UnstyledLink>
-                    <Post title={post.title} body={post.body} />
+                    <Post title={post.title} body={post.body} cutLength={40} />
                   </UnstyledLink>
                 </Link>
               ))}

@@ -1,4 +1,4 @@
-import { Header } from 'common'
+import { Header, Surface } from 'common'
 import styled from 'styled-components'
 
 const Main = styled.main`
@@ -13,7 +13,10 @@ interface MainLayoutProps {
 export function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <Header>Next Blog</Header>
+      <Surface>
+        <Header>Next Blog</Header>
+      </Surface>
+
       <Main>{children}</Main>
     </>
   )
