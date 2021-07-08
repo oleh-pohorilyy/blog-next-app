@@ -36,12 +36,15 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ title, body, cutLength }) => {
+  const toCut = Math.min(body.length, cutLength ?? body.length)
+  const trimmed = body.substring(0, toCut).trim()
+
   return (
     <PostCard>
       <PostTitle>{title}</PostTitle>
       <PostBody>
-        {body.substring(0, cutLength).trim()}
-        {cutLength ? '...' : ''}
+        {trimmed}
+        {trimmed.length !== body.length ? '...' : ''}
       </PostBody>
     </PostCard>
   )
