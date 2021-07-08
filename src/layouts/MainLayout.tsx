@@ -1,5 +1,6 @@
 import { Header, Surface } from 'common'
 import styled from 'styled-components'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Main = styled.main`
   flex-grow: 1;

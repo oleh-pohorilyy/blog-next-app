@@ -6,6 +6,7 @@ const Button = styled.div`
   color: #000000;
   cursor: pointer;
   padding: 8px 16px;
+  user-select: none;
 
   &:hover {
     background-color: #d5d5d5;

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import api from 'api/blogApi'
 import { Container, Surface, Input, Button, Title } from 'common'
@@ -27,13 +28,17 @@ const NewPost: NextPage = () => {
   const [body, setBody] = useState('')
   const router = useRouter()
 
-  const createPost = () => {
+  const createPost = async () => {
     if (isEmptyOrWhiteSpace(title) || isEmptyOrWhiteSpace(body)) {
-      alert('Fields can not be empty!')
+      toast.error('Please fill all fields!')
       return
     }
 
-    api.createPost(title, body)
+    const { status } = await api.createPost(title, body)
+    if (status == 201) {
+      toast.success('Post created!')
+      router.push('/')
+    }
   }
 
   return (

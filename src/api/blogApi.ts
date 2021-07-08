@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+
 import axios, { AxiosInstance, AxiosPromise } from 'axios'
 import { IPost } from 'model'
 
@@ -15,7 +17,7 @@ class BlogApiClient {
   }
 
   _handleError(error: any) {
-    console.log(error)
+    toast.error('Something went wrong!')
   }
 
   getPosts(): AxiosPromise<Array<IPost>> {

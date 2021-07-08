@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify'
+
 import type { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
 import { wrapper } from 'redux/store'
@@ -33,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
+      <ToastContainer autoClose={2000} />
     </>
   )
 }

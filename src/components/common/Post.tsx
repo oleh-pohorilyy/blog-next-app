@@ -40,7 +40,7 @@ const Post: React.FC<PostProps> = ({ title, body, cutLength }) => {
     <PostCard>
       <PostTitle>{title}</PostTitle>
       <PostBody>
-        {body.substring(0, cutLength)}
+        {body.substring(0, cutLength).trim()}
         {cutLength ? '...' : ''}
       </PostBody>
     </PostCard>
