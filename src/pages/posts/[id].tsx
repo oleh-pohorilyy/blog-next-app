@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { IAppState, ICommentedPost } from 'model'
+import { IAppState, IPost } from 'model'
 import { NextPage, NextPageContext } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { postsActions } from 'redux/actions'
+import { postActions } from 'redux/actions'
 import { wrapper } from 'redux/store'
 import { getPost } from 'redux/thunks/posts'
 import { MainLayout } from 'src/layouts'
@@ -16,8 +16,8 @@ interface PostProps {
 const Post: NextPage<PostProps> = ({ postId }) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const post = useSelector<IAppState, ICommentedPost | null>((state) => {
-    return state.commentedPost.item
+  const post = useSelector<IAppState, IPost | null>((state) => {
+    return state.post.item
   })
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Post: NextPage<PostProps> = ({ postId }) => {
     }
 
     return () => {
-      dispatch(postsActions.resetCommentedPost())
+      dispatch(postActions.reset())
     }
   }, [])
 

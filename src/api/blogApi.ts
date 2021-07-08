@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosPromise } from 'axios'
-import { ICommentedPost, IPost } from 'model'
+import { IPost } from 'model'
 
 class BlogApiClient {
   _client: AxiosInstance
@@ -22,7 +22,7 @@ class BlogApiClient {
     return this._client.get('/posts')
   }
 
-  getPost(id: string): AxiosPromise<ICommentedPost> {
+  getPost(id: string): AxiosPromise<IPost> {
     return this._client.get(`/posts/${id}`, { params: { id } })
   }
 

@@ -21,13 +21,16 @@ const LatestPosts: NextPage = () => {
     }
 
     return () => {
-      dispatch(postsActions.resetPosts())
+      dispatch(postsActions.reset())
     }
   }, [])
 
   if (posts.length == 0) return <>Loading...</>
   return (
     <MainLayout>
+      <Link href="/posts/new">
+        <button>Create post</button>
+      </Link>
       {posts.map((e) => (
         <Link href="/posts/[id]" as={`/posts/${e.id}`} key={e.id}>
           <div style={{ marginBottom: '20px', background: '#999999' }}>

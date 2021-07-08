@@ -13,13 +13,4 @@ function items(state: Array<IPost> = [], action: IAction): Array<IPost> {
   }
 }
 
-function isFetching(state = false, action: IAction) {
-  switch (action.type) {
-    case 'POSTS/TOGGLE_IS_FETCHING':
-      return action.payload
-    default:
-      return state
-  }
-}
-
-export default combineReducers({ items, isFetching })
+export default combineReducers({ items })
