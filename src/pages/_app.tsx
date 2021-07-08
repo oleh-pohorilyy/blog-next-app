@@ -1,5 +1,6 @@
-import type { AppProps } from 'next/app'
+import type { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
+import { wrapper } from 'redux/store'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,4 +15,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+MyApp.getInitialProps = wrapper.getInitialAppProps(
+  (store) =>
+    async ({ Component, ctx }: AppContext) => {
+      return {
+        pageProps: {
+          ...(Component.getInitialProps
+            ? await Component.getInitialProps({ ...ctx, store })
+            : {}),
+        },
+        pathname: ctx.pathname,
+      }
+    }
+)
+
+export default wrapper.withRedux(MyApp)

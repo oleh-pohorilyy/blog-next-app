@@ -1,8 +1,14 @@
-import { createStore, applyMiddleware } from 'redux'
+import { IAppState } from 'model'
+import { createWrapper, MakeStore } from 'next-redux-wrapper'
+import { createStore, applyMiddleware, Store } from 'redux'
 import thunk from 'redux-thunk'
 
 import rootReducer from './reducers/root'
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const makeStore: MakeStore<Store<IAppState>> = () => {
+  return createStore(rootReducer, applyMiddleware(thunk))
+}
 
-export default store
+const wrapper = createWrapper(makeStore, { debug: false })
+
+export { wrapper }

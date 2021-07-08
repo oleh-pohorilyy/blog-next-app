@@ -9,14 +9,9 @@ class BlogApiClient {
       baseURL: 'https://simple-blog-api.crew.red',
     })
 
-    this._client.interceptors.request.use((req) => {
-      return req
-    }, this._handleError)
+    this._client.interceptors.request.use((req) => req, this._handleError)
 
-    this._client.interceptors.response.use((res) => {
-      console.log(res)
-      return res
-    }, this._handleError)
+    this._client.interceptors.response.use((res) => res, this._handleError)
   }
 
   _handleError(error: any) {
@@ -27,7 +22,7 @@ class BlogApiClient {
     return this._client.get('/posts')
   }
 
-  getPost(id: number): AxiosPromise<ICommentedPost> {
+  getPost(id: string): AxiosPromise<ICommentedPost> {
     return this._client.get(`/posts/${id}`, { params: { id } })
   }
 
@@ -36,6 +31,6 @@ class BlogApiClient {
   }
 }
 
-const client = new BlogApiClient()
+const api = new BlogApiClient()
 
-export default client
+export default api
