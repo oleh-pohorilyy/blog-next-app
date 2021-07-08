@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IAppState, IPost } from 'model'
 import { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
+import { postsActions } from 'redux/actions'
 import { wrapper } from 'redux/store'
 import { getPosts } from 'redux/thunks/posts'
 import { MainLayout } from 'src/layouts'
@@ -15,10 +16,16 @@ const LatestPosts: NextPage = () => {
   })
 
   useEffect(() => {
-    if (posts.length != 0) return
-    dispatch(getPosts())
-  }, [posts, dispatch])
+    if (posts.length == 0) {
+      dispatch(getPosts())
+    }
 
+    return () => {
+      dispatch(postsActions.resetPosts())
+    }
+  }, [])
+
+  if (posts.length == 0) return <>Loading...</>
   return (
     <MainLayout>
       {posts.map((e) => (

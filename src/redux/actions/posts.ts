@@ -14,10 +14,10 @@ function setCommentedPost(payload: ICommentedPost) {
   } as const
 }
 
-function togglePostIsFetching(payload: boolean) {
+function resetCommentedPost() {
   return {
-    type: 'POST/TOGGLE_IS_FETCHING',
-    payload,
+    type: 'POST/SET',
+    payload: null,
   } as const
 }
 
@@ -28,19 +28,19 @@ function setPosts(payload: Array<IPost>) {
   } as const
 }
 
-function togglePostsIsFetching(payload: boolean) {
+function resetPosts() {
   return {
-    type: 'POSTS/TOGGLE_IS_FETCHING',
-    payload,
+    type: 'POSTS/SET',
+    payload: [],
   } as const
 }
 
 const postsActions = {
   createPost,
   setCommentedPost,
+  resetCommentedPost,
   setPosts,
-  togglePostsIsFetching,
-  togglePostIsFetching,
+  resetPosts,
 }
 
 export { postsActions }

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { IAppState, ICommentedPost } from 'model'
 import { NextPage, NextPageContext } from 'next'
+import { useRouter } from 'next/dist/client/router'
+import { postsActions } from 'redux/actions'
 import { wrapper } from 'redux/store'
 import { getPost } from 'redux/thunks/posts'
 import { MainLayout } from 'src/layouts'
@@ -13,14 +15,20 @@ interface PostProps {
 
 const Post: NextPage<PostProps> = ({ postId }) => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const post = useSelector<IAppState, ICommentedPost | null>((state) => {
     return state.commentedPost.item
   })
 
   useEffect(() => {
-    if (post != null) return
-    dispatch(getPost(postId))
-  }, [dispatch, post, postId])
+    if (post == null) {
+      dispatch(getPost(postId))
+    }
+
+    return () => {
+      dispatch(postsActions.resetCommentedPost())
+    }
+  }, [])
 
   if (post == null) return <>Loading...</>
   return (
@@ -28,6 +36,7 @@ const Post: NextPage<PostProps> = ({ postId }) => {
       <div>{post.id}</div>
       <div>{post.title}</div>
       <div>{post.body}</div>
+      <button onClick={() => router.push('/')}>Back</button>
     </MainLayout>
   )
 }
