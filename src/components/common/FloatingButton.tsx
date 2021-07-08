@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 const StyledFloatingButton = styled.div`
-  font-weight: bold;
-  font-size: 2rem;
+  font-size: 35px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 50px;
   text-align: center;
   user-select: none;
   background-color: #ffffff;
